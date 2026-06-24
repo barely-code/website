@@ -56,7 +56,11 @@ const orgJsonLd = {
   description: site.description,
   email: site.email,
   founders: site.founders.map((name) => ({ "@type": "Person", name })),
-  sameAs: [site.social.linkedin],
+  sameAs: [
+    site.social.github,
+    site.social.linkedin,
+    site.social.instagram,
+  ].filter(Boolean),
   slogan: site.tagline,
 };
 

@@ -34,7 +34,15 @@ export default function WorkPage() {
             <Reveal>
               <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <SectionLabel>// case study</SectionLabel>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <SectionLabel>// case study</SectionLabel>
+                    {study.status && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/5 px-2.5 py-0.5 font-mono text-[11px] text-accent">
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+                        {study.status}
+                      </span>
+                    )}
+                  </div>
                   <h2 className="mt-3 text-3xl font-bold tracking-tight text-fg sm:text-4xl">
                     {study.client}
                   </h2>
@@ -70,6 +78,60 @@ export default function WorkPage() {
                 </Reveal>
               ))}
             </div>
+
+            {/* Three tailored experiences */}
+            {study.experiences && study.experiences.length > 0 && (
+              <div className="mt-14">
+                <SectionLabel>// one platform, three surfaces</SectionLabel>
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  {study.experiences.map((exp, i) => (
+                    <Reveal key={exp.title} delay={i * 70}>
+                      <div className="h-full rounded-xl border border-border bg-surface p-6">
+                        <h3 className="text-base font-semibold text-fg">
+                          {exp.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-muted">
+                          {exp.body}
+                        </p>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Capability highlights */}
+            {study.capabilities && study.capabilities.length > 0 && (
+              <div className="mt-14">
+                <SectionLabel>// what it does</SectionLabel>
+                <ul className="mt-5 grid gap-x-10 gap-y-3 sm:grid-cols-2">
+                  {study.capabilities.map((cap, i) => (
+                    <Reveal key={i} delay={(i % 2) * 60} as="li">
+                      <div className="flex gap-3">
+                        <span className="mt-1 select-none font-mono text-accent">
+                          ▹
+                        </span>
+                        <span className="text-sm leading-relaxed text-muted">
+                          {cap}
+                        </span>
+                      </div>
+                    </Reveal>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Stack line */}
+            {study.stack && (
+              <Reveal className="mt-12 flex flex-wrap items-center gap-2 border-t border-border pt-6">
+                <span className="font-mono text-xs uppercase tracking-wider text-faint">
+                  Built with
+                </span>
+                <span className="font-mono text-sm text-muted">
+                  {study.stack}
+                </span>
+              </Reveal>
+            )}
 
             {/* Screenshots */}
             {study.screenshots.length > 0 && (

@@ -184,9 +184,16 @@ export default function HomePage() {
                   </span>
                 </div>
                 <div className="flex flex-col justify-center p-8 sm:p-10">
-                  <span className="font-mono text-xs text-accent">
-                    Case study
-                  </span>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="font-mono text-xs text-accent">
+                      Case study
+                    </span>
+                    {featured.status && (
+                      <span className="font-mono text-[11px] text-faint">
+                        {featured.status}
+                      </span>
+                    )}
+                  </div>
                   <h3 className="mt-3 text-2xl font-bold text-fg">
                     {featured.client}
                   </h3>

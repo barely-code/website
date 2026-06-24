@@ -42,12 +42,12 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 <li>
                   <a
-                    href={site.social.linkedin}
+                    href={site.whatsapp.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted transition-colors hover:text-fg"
                   >
-                    LinkedIn
+                    WhatsApp
                   </a>
                 </li>
                 <li>
@@ -58,6 +58,42 @@ export function Footer() {
                     Email
                   </a>
                 </li>
+                {site.social.github && (
+                  <li>
+                    <a
+                      href={site.social.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted transition-colors hover:text-fg"
+                    >
+                      GitHub
+                    </a>
+                  </li>
+                )}
+                {site.social.linkedin && (
+                  <li>
+                    <a
+                      href={site.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted transition-colors hover:text-fg"
+                    >
+                      LinkedIn
+                    </a>
+                  </li>
+                )}
+                {site.social.instagram && (
+                  <li>
+                    <a
+                      href={site.social.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted transition-colors hover:text-fg"
+                    >
+                      Instagram
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
 

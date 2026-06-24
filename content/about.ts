@@ -21,17 +21,17 @@ export type Founder = {
 
 export const founders: Founder[] = [
   {
-    name: "Vyom",
+    name: "Vyom Narsana",
     role: "Co-founder · Engineering",
     bio: "[TODO: bio — background, what he loves building, AI/automation focus.]",
-    initials: "VY",
-    // linkedin: "[TODO]",
+    initials: "VN",
+    linkedin: "https://www.linkedin.com/in/vyom-narsana-852aa7231/",
   },
   {
-    name: "Samarth",
+    name: "Samarth Vaghela",
     role: "Co-founder · Engineering",
     bio: "[TODO: bio — background, what he loves building, AI/automation focus.]",
-    initials: "SA",
-    // linkedin: "[TODO]",
+    initials: "SV",
+    linkedin: "https://www.linkedin.com/in/samarth-vaghela-647a1b383/",
   },
 ];

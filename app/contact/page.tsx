@@ -21,16 +21,34 @@ export default function ContactPage() {
             sub="We usually reply within a day."
           />
           <Reveal delay={120}>
-            <div className="mt-8 space-y-4 border-t border-border pt-8">
-              <p className="font-mono text-xs uppercase tracking-wider text-muted">
-                Prefer email?
-              </p>
-              <a
-                href={`mailto:${site.email}`}
-                className="block text-lg text-fg transition-colors hover:text-accent"
-              >
-                {site.email}
-              </a>
+            <div className="mt-8 space-y-6 border-t border-border pt-8">
+              <div>
+                <p className="font-mono text-xs uppercase tracking-wider text-muted">
+                  Fastest — WhatsApp
+                </p>
+                <a
+                  href={site.whatsapp.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-2 text-lg text-fg transition-colors hover:text-accent"
+                >
+                  <span className="text-accent">›</span>
+                  {site.whatsapp.display}
+                </a>
+              </div>
+
+              <div>
+                <p className="font-mono text-xs uppercase tracking-wider text-muted">
+                  Prefer email?
+                </p>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="mt-2 block text-lg text-fg transition-colors hover:text-accent"
+                >
+                  {site.email}
+                </a>
+              </div>
+
               <p className="text-sm leading-relaxed text-muted">
                 No forms, no funnels, no follow-up sequence. Just two engineers
                 who&apos;ll read your message and reply.
