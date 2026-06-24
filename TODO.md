@@ -5,9 +5,10 @@ fabricated — replace with real details before going live.
 
 ## Content
 
-- **`content/about.ts`** — founder bios:
-  - Vyom Narsana's bio (`[TODO: bio]`). Name + LinkedIn already filled in.
-  - Samarth Vaghela's bio (`[TODO: bio]`). Name + LinkedIn already filled in.
+- **`content/about.ts`** — founder bios (OPTIONAL, deferred):
+  - Bios are currently empty and the cards render cleanly without them
+    (name · role · LinkedIn). Fill `bio` for Vyom / Samarth whenever ready and the
+    paragraph reappears automatically. Not blocking launch.
 - **`content/work.ts`** — The Laundry Mill case study (written, public-safe):
   - ⚠️ **Client sign-off:** confirm The Laundry Mill is happy to be featured by
     name/logo before the site goes live (and before pushing to a *public* repo).

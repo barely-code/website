@@ -23,14 +23,15 @@ export const founders: Founder[] = [
   {
     name: "Vyom Narsana",
     role: "Co-founder · Engineering",
-    bio: "[TODO: bio — background, what he loves building, AI/automation focus.]",
+    // Optional — left empty for now; the card renders cleanly without it.
+    bio: "", // [TODO: bio — background, what he loves building, AI/automation focus.]
     initials: "VN",
     linkedin: "https://www.linkedin.com/in/vyom-narsana-852aa7231/",
   },
   {
     name: "Samarth Vaghela",
     role: "Co-founder · Engineering",
-    bio: "[TODO: bio — background, what he loves building, AI/automation focus.]",
+    bio: "", // [TODO: bio — background, what he loves building, AI/automation focus.]
     initials: "SV",
     linkedin: "https://www.linkedin.com/in/samarth-vaghela-647a1b383/",
   },

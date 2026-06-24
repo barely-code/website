@@ -50,7 +50,9 @@ export default function AboutPage() {
                     </p>
                   </div>
                 </div>
-                <p className="mt-5 leading-relaxed text-muted">{founder.bio}</p>
+                {founder.bio && (
+                  <p className="mt-5 leading-relaxed text-muted">{founder.bio}</p>
+                )}
                 {founder.linkedin && (
                   <a
                     href={founder.linkedin}
