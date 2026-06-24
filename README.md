@@ -82,22 +82,27 @@ Brand colors and fonts are in `tailwind.config.ts` and `app/globals.css`.
 
 ## Wiring the contact email
 
-The form posts to `app/api/contact/route.ts`, which validates and then sends the
-enquiry via **Web3Forms** (free, no domain/DNS setup). Until a key is set, it just
-**logs** the submission so the flow stays testable.
+The form (`components/ContactForm.tsx`) submits directly to **Web3Forms** from the
+browser (free, no domain/DNS setup), delivering each enquiry to
+`hello.barelycode@gmail.com` with the sender as reply-to. When no key is set it falls
+back to `app/api/contact/route.ts`, which validates and **logs** so the flow stays
+testable.
 
-To turn on real delivery to `hello.barelycode@gmail.com`:
+To turn on real delivery:
 
 1. Go to <https://web3forms.com>, enter `hello.barelycode@gmail.com`, and copy the
    access key it emails you (no account needed).
 2. Add it to `.env.local` (see `.env.example`):
    ```
-   WEB3FORMS_ACCESS_KEY=your-key-here
+   NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-key-here
    ```
 3. Add the same variable in **Vercel → Settings → Environment Variables**, then redeploy.
+4. (Recommended) In the Web3Forms dashboard, restrict the key to your domain and enable
+   spam protection — the key is public by design, so lock it down there.
 
-No credentials are invented or committed. To switch to a branded from-address later
-(e.g. Resend on the `barelycode.in` domain), swap the delivery block in the route.
+No credentials are invented or committed. To use a branded from-address instead
+(e.g. Resend on the `barelycode.in` domain), do the send server-side in the API route
+and point the form back at `/api/contact`.
 
 ## Accessibility & SEO
 

@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { site } from "@/content/site";
 
 type ContactPayload = {
   name?: string;
@@ -11,6 +10,16 @@ type ContactPayload = {
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/**
+ * Fallback contact endpoint.
+ *
+ * Real delivery happens client-side via Web3Forms (see components/ContactForm.tsx)
+ * because the Web3Forms free tier only accepts browser submissions. This route is
+ * the fallback used when NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY isn't set (e.g. local dev):
+ * it validates and logs so the flow stays testable. If you later move to a provider
+ * that supports server-side sending (e.g. Resend on a verified domain), do the send
+ * here and point the form back at /api/contact.
+ */
 export async function POST(request: Request) {
   let data: ContactPayload;
   try {
@@ -22,10 +31,7 @@ export async function POST(request: Request) {
   const name = data.name?.trim() ?? "";
   const email = data.email?.trim() ?? "";
   const message = data.message?.trim() ?? "";
-  const company = data.company?.trim() ?? "";
-  const projectType = data.projectType?.trim() ?? "";
 
-  // Server-side validation (never trust the client)
   if (!name || !email || !message) {
     return NextResponse.json(
       { error: "Name, email, and message are required." },
@@ -36,51 +42,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
   }
 
-  // --- Email delivery via Web3Forms (free, no domain/DNS needed) ---
-  // Get a free access key at https://web3forms.com — enter hello.barelycode@gmail.com,
-  // the key is emailed instantly. Put it in .env.local (and Vercel env) as:
-  //   WEB3FORMS_ACCESS_KEY=your-key-here
-  // Messages then arrive at that inbox, with the sender's address as reply-to.
-  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
-
-  if (accessKey) {
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: `New project enquiry — ${name}`,
-          from_name: `${site.name} website`,
-          replyto: email,
-          // Fields included in the email body:
-          name,
-          email,
-          company: company || "—",
-          project_type: projectType || "—",
-          message,
-        }),
-      });
-      const result = (await res.json()) as { success?: boolean };
-      if (!res.ok || !result.success) {
-        throw new Error("Web3Forms rejected the submission");
-      }
-      return NextResponse.json({ ok: true });
-    } catch (err) {
-      console.error("[contact] delivery failed:", err);
-      return NextResponse.json(
-        { error: "Could not send your message. Please email us directly." },
-        { status: 502 },
-      );
-    }
-  }
-
-  // No key configured yet (e.g. local dev) — log so the flow stays verifiable.
-  console.log("[contact] new enquiry (no WEB3FORMS_ACCESS_KEY set — not emailed):", {
+  console.log("[contact] new enquiry (fallback — not emailed):", {
     name,
     email,
-    company,
-    projectType,
+    company: data.company ?? "",
+    projectType: data.projectType ?? "",
     message,
   });
 

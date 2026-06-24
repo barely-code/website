@@ -29,11 +29,12 @@ fabricated — replace with real details before going live.
 
 ## Email delivery
 
-- **Contact form** is wired to **Web3Forms** (`app/api/contact/route.ts`). To go
-  live: get a free key at <https://web3forms.com> (enter
-  `hello.barelycode@gmail.com`), then set `WEB3FORMS_ACCESS_KEY` in `.env.local`
-  AND in Vercel → Settings → Environment Variables. Until then, submissions are
-  only logged, not emailed. (WhatsApp contact: +91 83205 36581.)
+- **Contact form** is wired to **Web3Forms** (browser-side, in
+  `components/ContactForm.tsx`). To go live: get a free key at
+  <https://web3forms.com> (enter `hello.barelycode@gmail.com`), then set
+  `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` in `.env.local` AND in Vercel → Settings →
+  Environment Variables, and lock the key to your domain in the Web3Forms
+  dashboard. Until then, submissions are only logged. (WhatsApp: +91 83205 36581.)
 
 ## Domain / deploy
 

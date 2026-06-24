@@ -19,6 +19,10 @@ const fieldClass =
   "w-full rounded-md border border-border bg-surface px-3.5 py-2.5 text-sm text-fg placeholder:text-faint transition-colors focus:border-accent focus-visible:ring-0";
 const labelClass = "block font-mono text-xs uppercase tracking-wider text-muted";
 
+// Web3Forms is a public, client-side key by design (spam-protected + domain-locked
+// in their dashboard). Free tier requires submitting from the browser, not the server.
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
 function validate(data: {
   name: string;
   email: string;
@@ -57,14 +61,48 @@ export function ContactForm() {
     setErrors(found);
     if (Object.keys(found).length > 0) return;
 
+    // Honeypot — bots fill this hidden field; real users never do.
+    if (String(fd.get("botcheck") ?? "")) {
+      setStatus("success");
+      form.reset();
+      return;
+    }
+
     setStatus("submitting");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error("Request failed");
+      let ok: boolean;
+      if (WEB3FORMS_KEY) {
+        // Deliver straight to the inbox via Web3Forms (browser → Web3Forms).
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: `New project enquiry — ${payload.name}`,
+            from_name: "BarelyCode website",
+            replyto: payload.email,
+            name: payload.name,
+            email: payload.email,
+            company: payload.company || "—",
+            project_type: payload.projectType || "—",
+            message: payload.message,
+          }),
+        });
+        const result = (await res.json()) as { success?: boolean };
+        ok = res.ok && Boolean(result.success);
+      } else {
+        // No key configured — fall back to our API route (logs in dev).
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        ok = res.ok;
+      }
+      if (!ok) throw new Error("Request failed");
       setStatus("success");
       form.reset();
     } catch {
@@ -98,6 +136,15 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5">
+      {/* Honeypot — visually hidden, off the tab order; bots fill it, humans don't. */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className={labelClass}>
