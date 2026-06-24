@@ -29,9 +29,11 @@ fabricated — replace with real details before going live.
 
 ## Email delivery
 
-- **`app/api/contact/route.ts`** — `// TODO: wire Resend`. Install `resend`,
-  add `RESEND_API_KEY` to the environment, and uncomment the send block.
-  (Contact email is `hello.barelycode@gmail.com`; WhatsApp +91 83205 36581.)
+- **Contact form** is wired to **Web3Forms** (`app/api/contact/route.ts`). To go
+  live: get a free key at <https://web3forms.com> (enter
+  `hello.barelycode@gmail.com`), then set `WEB3FORMS_ACCESS_KEY` in `.env.local`
+  AND in Vercel → Settings → Environment Variables. Until then, submissions are
+  only logged, not emailed. (WhatsApp contact: +91 83205 36581.)
 
 ## Domain / deploy
 

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { site } from "@/content/site";
 
 type ContactPayload = {
   name?: string;
@@ -21,6 +22,8 @@ export async function POST(request: Request) {
   const name = data.name?.trim() ?? "";
   const email = data.email?.trim() ?? "";
   const message = data.message?.trim() ?? "";
+  const company = data.company?.trim() ?? "";
+  const projectType = data.projectType?.trim() ?? "";
 
   // Server-side validation (never trust the client)
   if (!name || !email || !message) {
@@ -33,29 +36,51 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
   }
 
-  // --- Email delivery ---
-  // TODO: wire Resend (or your provider of choice). Example:
-  //
-  //   import { Resend } from "resend";
-  //   const resend = new Resend(process.env.RESEND_API_KEY);
-  //   await resend.emails.send({
-  //     from: "BarelyCode <hello@barelycode.in>",
-  //     to: "hello@barelycode.in",
-  //     replyTo: email,
-  //     subject: `New project enquiry — ${name}`,
-  //     text: `From: ${name} <${email}>\nCompany: ${data.company ?? "—"}\n` +
-  //           `Type: ${data.projectType ?? "—"}\n\n${message}`,
-  //   });
-  //
-  // Add RESEND_API_KEY to your environment variables (locally in .env.local,
-  // and in the Vercel project settings) before going live.
+  // --- Email delivery via Web3Forms (free, no domain/DNS needed) ---
+  // Get a free access key at https://web3forms.com — enter hello.barelycode@gmail.com,
+  // the key is emailed instantly. Put it in .env.local (and Vercel env) as:
+  //   WEB3FORMS_ACCESS_KEY=your-key-here
+  // Messages then arrive at that inbox, with the sender's address as reply-to.
+  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
 
-  // For now we just log so the flow is verifiable end-to-end in dev.
-  console.log("[contact] new enquiry:", {
+  if (accessKey) {
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New project enquiry — ${name}`,
+          from_name: `${site.name} website`,
+          replyto: email,
+          // Fields included in the email body:
+          name,
+          email,
+          company: company || "—",
+          project_type: projectType || "—",
+          message,
+        }),
+      });
+      const result = (await res.json()) as { success?: boolean };
+      if (!res.ok || !result.success) {
+        throw new Error("Web3Forms rejected the submission");
+      }
+      return NextResponse.json({ ok: true });
+    } catch (err) {
+      console.error("[contact] delivery failed:", err);
+      return NextResponse.json(
+        { error: "Could not send your message. Please email us directly." },
+        { status: 502 },
+      );
+    }
+  }
+
+  // No key configured yet (e.g. local dev) — log so the flow stays verifiable.
+  console.log("[contact] new enquiry (no WEB3FORMS_ACCESS_KEY set — not emailed):", {
     name,
     email,
-    company: data.company ?? "",
-    projectType: data.projectType ?? "",
+    company,
+    projectType,
     message,
   });
 

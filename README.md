@@ -82,16 +82,22 @@ Brand colors and fonts are in `tailwind.config.ts` and `app/globals.css`.
 
 ## Wiring the contact email
 
-The form posts to `app/api/contact/route.ts`, which currently **validates and
-logs** the submission. To actually send mail, follow the clearly-marked
-`// TODO: wire Resend` block in that file:
+The form posts to `app/api/contact/route.ts`, which validates and then sends the
+enquiry via **Web3Forms** (free, no domain/DNS setup). Until a key is set, it just
+**logs** the submission so the flow stays testable.
 
-```bash
-npm install resend
-```
+To turn on real delivery to `hello.barelycode@gmail.com`:
 
-Add `RESEND_API_KEY` to `.env.local` (and Vercel), then uncomment the Resend
-snippet. No credentials are invented or committed.
+1. Go to <https://web3forms.com>, enter `hello.barelycode@gmail.com`, and copy the
+   access key it emails you (no account needed).
+2. Add it to `.env.local` (see `.env.example`):
+   ```
+   WEB3FORMS_ACCESS_KEY=your-key-here
+   ```
+3. Add the same variable in **Vercel → Settings → Environment Variables**, then redeploy.
+
+No credentials are invented or committed. To switch to a branded from-address later
+(e.g. Resend on the `barelycode.in` domain), swap the delivery block in the route.
 
 ## Accessibility & SEO
 
