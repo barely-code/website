@@ -40,7 +40,7 @@ export default function HomePage() {
             <Reveal delay={240}>
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <ButtonLink href="/contact" variant="primary">
-                  Start a project →
+                  Book a demo →
                 </ButtonLink>
                 <ButtonLink href={secondaryCta.href} variant="secondary">
                   {secondaryCta.label}

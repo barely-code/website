@@ -3,7 +3,7 @@
 export const hero = {
   // Rendered with the last word in the accent color
   headline: "Less code. More outcomes.",
-  sub: "We're a two-person software studio that ships fast. Websites, web apps, AI, and automation — built lean, shipped quick, done right.",
+  sub: "A two-person studio building AI agents, automations, web apps, and websites — senior hands, AI-accelerated, shipped in days, not quarters.",
   terminalLines: [
     "$ barelycode init --your-idea",
     "› scoping the real problem...",

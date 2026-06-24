@@ -10,23 +10,23 @@ export type Service = {
 export const services: Service[] = [
   {
     id: "01",
-    title: "Business Websites & Landing Pages",
-    blurb: "Fast, modern, and built to convert. Live in days, not quarters.",
+    title: "AI Agents & Integrations",
+    blurb: "Autonomous agents, copilots, RAG, and LLM features wired into your product and workflows — doing real work, not demos.",
   },
   {
     id: "02",
+    title: "Automations & Workflows",
+    blurb: "Agentic workflows that kill the repetitive manual work. Connect your tools so they run themselves.",
+  },
+  {
+    id: "03",
     title: "Web Apps & Internal Dashboards",
     blurb: "Custom tools that replace the spreadsheet chaos your team is drowning in.",
   },
   {
-    id: "03",
-    title: "AI Integrations",
-    blurb: "Chatbots, copilots, RAG, and LLM features wired into your product or workflow.",
-  },
-  {
     id: "04",
-    title: "Automations & Workflows",
-    blurb: "Kill the repetitive manual work. Connect your tools so they run themselves.",
+    title: "Business Websites & Landing Pages",
+    blurb: "Fast, modern, and built to convert. Live in days, not quarters.",
   },
   {
     id: "05",

@@ -16,7 +16,7 @@ export default function ContactPage() {
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div>
           <PageHeader
-            label="// start a project"
+            label="// book a demo"
             heading="Tell us what you're trying to ship."
             sub="We usually reply within a day."
           />
