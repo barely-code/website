@@ -20,9 +20,9 @@ export const site = {
   },
   social: {
     github: "https://github.com/barely-code",
-    // Not ready yet — leave empty and these links stay hidden until filled in.
+    instagram: "https://www.instagram.com/barely_code/",
+    // Not ready yet — leave empty and the link stays hidden until filled in.
     linkedin: "", // [TODO: company LinkedIn URL]
-    instagram: "", // [TODO: Instagram URL]
   },
 } as const;
 

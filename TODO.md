@@ -17,7 +17,6 @@ fabricated — replace with real details before going live.
   - Add real screenshots once available (see Assets) — none shown yet (not live).
 - **`content/site.ts`** — socials not ready yet:
   - `social.linkedin` — company LinkedIn URL (hidden until filled).
-  - `social.instagram` — Instagram URL (hidden until filled).
 
 ## Assets
 
