@@ -29,7 +29,7 @@ export default function HomePage() {
             <Reveal delay={80}>
               <h1 className="mt-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-7xl">
                 Less code.{" "}
-                <span className="text-accent">More outcomes.</span>
+                <span className="text-gradient-brand">More outcomes.</span>
               </h1>
             </Reveal>
             <Reveal delay={160}>

@@ -1,10 +1,13 @@
 import { ImageResponse } from "next/og";
+import { ogFonts, OG_FONT_FAMILY } from "./og-fonts";
 
-// Favicon — generated, on-brand "<>" mark in accent green on near-black.
+// Favicon — generated, on-brand "<>" mark in brand violet on near-black.
+// Edge runtime: avoids the Windows Node-runtime font-path bug in @vercel/og.
+export const runtime = "edge";
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
-export default function Icon() {
+export default async function Icon() {
   return new ImageResponse(
     (
       <div
@@ -15,16 +18,16 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#0a0a0a",
-          color: "#00e599",
+          color: "#818cf8",
           fontSize: 22,
           fontWeight: 700,
-          fontFamily: "monospace",
+          fontFamily: OG_FONT_FAMILY,
           borderRadius: 6,
         }}
       >
         {"<>"}
       </div>
     ),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

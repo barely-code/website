@@ -42,6 +42,6 @@ export const services: Service[] = [
 
 export const servicesIntro = {
   label: "// what we build",
-  heading: "Six ways we put dents in your backlog.",
-  sub: "No bloated retainers. No junior handoffs. Pick what you need — we ship it.",
+  heading: "We put dents in your backlog.",
+  sub: "From AI agents to full products — and whatever else the job needs. No bloated retainers, no junior handoffs. Pick what you need, or just ask — we ship it.",
 };

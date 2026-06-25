@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 import { ScreenshotFrame } from "@/components/ScreenshotFrame";
 import { CtaBand } from "@/components/CtaBand";
+import { buttonClasses } from "@/components/ui/Button";
 import { caseStudies, workIntro } from "@/content/work";
 
 export const metadata: Metadata = {
@@ -49,6 +50,25 @@ export default function WorkPage() {
                   <p className="mt-3 max-w-xl text-lg text-muted">
                     {study.summary}
                   </p>
+                  {study.liveUrl && (
+                    <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+                      <a
+                        href={study.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={buttonClasses("secondary")}
+                        aria-label={`Visit the ${study.client} site (opens in a new tab)`}
+                      >
+                        Visit site
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                      {study.liveUrlNote && (
+                        <span className="font-mono text-xs text-faint">
+                          {study.liveUrlNote}
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {study.tags.map((tag) => (
@@ -119,18 +139,6 @@ export default function WorkPage() {
                   ))}
                 </ul>
               </div>
-            )}
-
-            {/* Stack line */}
-            {study.stack && (
-              <Reveal className="mt-12 flex flex-wrap items-center gap-2 border-t border-border pt-6">
-                <span className="font-mono text-xs uppercase tracking-wider text-faint">
-                  Built with
-                </span>
-                <span className="font-mono text-sm text-muted">
-                  {study.stack}
-                </span>
-              </Reveal>
             )}
 
             {/* Screenshots */}

@@ -19,9 +19,12 @@ const config: Config = {
         fg: "#ededed",
         muted: "#a1a1aa",
         faint: "#71717a",
-        // One restrained accent — electric green
-        accent: "#00e599",
-        "accent-dim": "#00b87a",
+        // Accent — drawn from the logo's violet→blue gradient
+        accent: "#818cf8",
+        "accent-dim": "#6366f1",
+        // Gradient endpoints for the brand wordmark
+        "brand-from": "#a78bfa",
+        "brand-to": "#5b8def",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],

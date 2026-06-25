@@ -20,7 +20,8 @@ export const site = {
   },
   social: {
     github: "https://github.com/barely-code",
-    instagram: "https://www.instagram.com/barely_code/",
+    // Removed for now — restore the URL to bring the link back.
+    instagram: "", // "https://www.instagram.com/barely_code/"
     // Not ready yet — leave empty and the link stays hidden until filled in.
     linkedin: "", // [TODO: company LinkedIn URL]
   },
