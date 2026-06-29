@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "./JsonLd";
 import { site } from "@/content/site";
 
 // Geist Sans + Geist Mono are bundled locally (no network fetch at build time).
@@ -48,32 +49,13 @@ export const metadata: Metadata = {
   },
 };
 
-const orgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.name,
-  url: site.url,
-  description: site.description,
-  email: site.email,
-  founders: site.founders.map((name) => ({ "@type": "Person", name })),
-  sameAs: [
-    site.social.github,
-    site.social.linkedin,
-    site.social.instagram,
-  ].filter(Boolean),
-  slogan: site.tagline,
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="min-h-screen bg-bg">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
-        />
+        <JsonLd />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-bg"
