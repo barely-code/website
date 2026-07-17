@@ -2,11 +2,11 @@
 
 export const about = {
   label: "// who we are",
-  heading: "Two engineers who got tired of slow.",
+  heading: "A two-person studio, built to ship.",
   manifesto: [
-    "BarelyCode is two engineers who got tired of bloated agencies, endless meetings, and over-planning that never ships.",
-    "We believe in execution over planning, shipping over talking, and using AI to do in days what used to take months. The name is the whole philosophy: barely any code, because the leanest path to the outcome usually is the best one.",
-    "When you hire BarelyCode, the founders build your thing. No outsourcing. No junior shuffle. No account manager standing between you and the people writing the code.",
+    "BarelyCode is a two-person software studio. We build AI agents, automations, web apps, and websites for people who need working software — not a long roadmap and a bigger invoice.",
+    "We keep the team small on purpose. You work directly with the two engineers writing your code, so decisions happen in a message, not a meeting. AI handles the repetitive work, which keeps our timelines short and our overhead — and your cost — low.",
+    "The name is the approach: build the leanest thing that actually solves the problem, ship it, and improve it from real use. We'd rather get something working in front of you than spend weeks planning the perfect version.",
   ],
 };
 

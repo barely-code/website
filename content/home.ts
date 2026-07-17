@@ -43,12 +43,12 @@ export const why = {
       body: "No account managers, no project-manager layer. You talk to the founders building your thing.",
     },
     {
-      title: "AI-accelerated",
-      body: "AI does the heavy lifting, so you pay for outcomes — not billable hours.",
+      title: "AI at the core",
+      body: "We build AI agents and automations into what you ship — real systems in production, not a buzzword bolted on.",
     },
     {
-      title: "Senior-only",
-      body: "Two experienced engineers on the tools. No outsourcing, no junior shuffle.",
+      title: "Only what moves the needle",
+      body: "We cut the bloat and build the thing that actually gets you the outcome — nothing you don't need.",
     },
     {
       title: "Built to ship",

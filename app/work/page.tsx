@@ -142,7 +142,7 @@ export default function WorkPage() {
             )}
 
             {/* Screenshots */}
-            {study.screenshots.length > 0 && (
+            {study.screenshots && study.screenshots.length > 0 && (
               <div className="mt-12">
                 <SectionLabel>// screenshots</SectionLabel>
                 <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

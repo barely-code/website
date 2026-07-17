@@ -42,7 +42,8 @@ export type CaseStudy = {
   experiences?: Experience[];
   /** Optional: punchy capability highlights. */
   capabilities?: string[];
-  screenshots: Screenshot[];
+  /** Optional: framed screenshots. Omit until real shots are ready. */
+  screenshots?: Screenshot[];
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -91,8 +92,6 @@ export const caseStudies: CaseStudy[] = [
       "Automated WhatsApp updates across the whole journey.",
       "Multi-store logistics around a central cleaning hub.",
     ],
-    // No screenshots yet — project isn't live. Add framed shots here once ready.
-    screenshots: [],
   },
 ];
 

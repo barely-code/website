@@ -177,19 +177,15 @@ export default function HomePage() {
               href="/work"
               className="group mt-10 block overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-300 hover:border-border-strong"
             >
-              <div className="grid gap-0 md:grid-cols-2">
-                <div className="bg-dotgrid flex aspect-[16/10] items-center justify-center md:aspect-auto">
-                  <span className="font-mono text-xs text-faint">
-                    [ {featured.client} — preview ]
-                  </span>
-                </div>
+              <div className="grid gap-0 md:grid-cols-[1.1fr_0.9fr]">
                 <div className="flex flex-col justify-center p-8 sm:p-10">
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="font-mono text-xs text-accent">
                       Case study
                     </span>
                     {featured.status && (
-                      <span className="font-mono text-[11px] text-faint">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/5 px-2.5 py-0.5 font-mono text-[11px] text-accent">
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
                         {featured.status}
                       </span>
                     )}
@@ -212,6 +208,26 @@ export default function HomePage() {
                     Read the case study →
                   </span>
                 </div>
+                {featured.capabilities && featured.capabilities.length > 0 && (
+                  <div className="relative flex flex-col justify-center gap-3 border-t border-border bg-bg/40 p-8 sm:p-10 md:border-l md:border-t-0">
+                    <div className="bg-dotgrid pointer-events-none absolute inset-0 opacity-40" />
+                    <span className="relative font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
+                      // what it does
+                    </span>
+                    <ul className="relative space-y-2.5">
+                      {featured.capabilities.slice(0, 4).map((cap) => (
+                        <li key={cap} className="flex gap-2.5">
+                          <span className="mt-0.5 select-none font-mono text-accent">
+                            ▹
+                          </span>
+                          <span className="text-sm leading-relaxed text-muted">
+                            {cap}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </Link>
           </Reveal>
